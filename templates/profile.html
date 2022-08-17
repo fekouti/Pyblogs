@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block variableContent %}
+
+    <!-- HOME -->
+<div id="home">
+
+    <div class="container-fluid last-posts">
+      <div class="row">
+
+         <!-- ASIDE -->
+
+         <div class="col-md-4">
+          <div class="container profile-panel">
+
+            <div class="row">
+              <div class="col-8 offset-lg-2 profile-pic">
+                <img src="{% static 'img/profile_pic.jpg' %}" alt="">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-8 offset-lg-2" style="text-align:center;">
+                <h2> Pepito Python </h2>
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-8 offset-lg-2" style="text-align:center;">
+                <h5>Front-End Developer.</h5>
+              </div>
+            </div>
+               
+          </div>
+        </div>
+          <!-- ASIDE END -->
+
+
+
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-9">
+              <h3 class="recent-posts home-title">MIS POSTS</h3>
+            </div>
+            <div class="col-3">
+              <a href="../new_post/"><button type="button" class="btn btn-success"><i class="bi bi-plus" style="color:white;"></i>Nuevo Post</button></a>
+            </div>
+          </div>
+          <div class="container d-flex">
+            <div class="row row-cols-2 row-cols-md-2 g-4">
+              
+
+
+
+                <!-- CARDS -->
+
+        {% for post in posts %}
+
+       <div class="col">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4" >
+                <img src="https://picsum.photos/300/400" class="img-fluid rounded-start" alt="..." style="height: 100%; object-fit: contain;">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{ post.title }}</h5>
+                  <p class="card-text">{{ post.postContent }}</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                  <a href="#" class="btn btn-success">Leer Más</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      <!-- CARDS END -->
+
+
+            
+     
+
+      </div>
+      </div>
+    
+
+
+</div>
+<!-- HOME END -->
+ 
+
+{% endblock %}

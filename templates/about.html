@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block variableContent %}
+
+
+    <!-- HOME -->
+<div id="home">
+
+    <div class="container-fluid last-posts">
+      <h3 class="home-title">SOBRE MI</h3>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <p>Esta web nace de la necesidad de presentar un proyecto final para el curso de Python brindado por CoderHouse.
+                  Fue un gran desafío donde cada uno dio lo mejor de si mismos para lograr un sitio no solo funcional sino estético cumpliendo con
+                  lo solicitado en las consignas. 
+                </p>
+                
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+            
+      <!-- ASIDE -->
+
+
+        <div class="col-md-4">
+          <div class="container">
+
+                <!-- CODER AD -->
+
+                <div class="card bg-dark text-white coder-ad">
+                  <a href="https://www.coderhouse.com/" target="_blank">
+                    <img src="{% static 'img/aside.jpg' %}" class="card-img" alt="coder banner">
+                  </a>
+                </div>
+                <!-- CODER AD -->
+
+          </div>
+        </div>
+      </div>
+      </div>
+      <!-- ASIDE END -->
+
+
+</div>      
+      <!-- HOME END -->
+    
+    
+      {% endblock %}

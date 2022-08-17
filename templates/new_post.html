@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block variableContent %}
+
+
+    <!-- HOME -->
+<div id="home">
+
+    <div class="container login-form-container ">
+
+        <form class="post-form" action="" method="POST">
+        {% csrf_token %}
+
+          <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
+            <label class="form-label">Titulo</label>
+            <input type="text" class="form-control" name="title">
+          </div>
+          <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
+            <label class="form-label">Subtitulo</label>
+            <input type="text" class="form-control" name="subtitle">
+          </div>
+          <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
+            <label class="form-label">Imagen</label>
+            <input type="file" class="form-control" name="post_img">
+          </div>
+          <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
+            <label class="form-label">Contenido</label>
+            <textarea name="post_body" style="width:100%; height:200px;" id="post_body"></textarea> 
+          </div>
+      </div>
+
+    <div class="modal-footer justify-content-center">
+      <a href="/"><button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" style="margin-right:25px ;">Cancelar</button></a>
+      <button type="submit" class="btn btn-success" value="Post">Publicar</button>
+    </div>
+
+  </form>
+    </div>
+
+
+</div>
+
+
+
+    <!-- HOME END -->
+
+    {% endblock %}

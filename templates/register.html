@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block variableTitle %}
+  Registrarse
+{% endblock %}
+
+{% block variableContent %}
+
+
+    <!-- HOME -->
+<div id="home">
+
+    <div class="container login-form-container ">
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+         <form class="col-md-6 login-form" action="" method="POST">
+          {% csrf_token %}
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+            <div id="emailHelp" class="form-text">No compartiremos tu correo con nadie.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+          </div>
+
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nombre</label>
+            <input type="text" class="form-control" name="name">
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Apellido</label>
+            <input type="text" class="form-control" name="lastname">
+          </div>
+
+          
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Foto de perfil</label>
+            <input type="file" class="form-control" name="user_img">
+          </div>
+
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Sobre ti</label>
+           <textarea name="user_bio" id="" cols="30" rows="10" style="width:100%;"></textarea>
+          </div>
+
+
+          <button type="submit" class="btn btn-success">Registrarse</button>
+         </form>
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+
+
+</div>
+    <!-- HOME END -->
+
+    {% endblock %}

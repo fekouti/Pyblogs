@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block variableContent %}
+
+    <!-- HOME -->
+<div id="home">
+
+    <div class="container last-posts">
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="home-title" style="text-align: center; margin-bottom: 30px;">Todos los Blogs</h2>
+        </div>
+      </div>
+      
+      
+          <div class="container d-flex">
+            <div class="row row-cols-3 row-cols-md-3 g-4">
+              
+
+
+
+                <!-- CARDS -->
+
+        {% for blog in blogs %}
+
+       <div class="col">
+
+
+          <div class="card blog-item" style="width: 22rem; margin-left: 55px; margin-bottom: 30px;">
+            <div style="width: 100%; height: 100%; ">
+              <img src=" https://picsum.photos/700 " class="card-img-top" alt="..." style="object-fit: contain;">
+            </div> 
+            <div class="card-body">
+              <h5 class="card-title">{{ blog.title }}</h5>
+              <p class="card-text">{{ blog.subtitle }}</p>
+              <p class="card-text" style="font-size: .8em;"><small class="text-muted"><i class="bi bi-clock"></i> {{ blog.post_date }}</small></p>
+              <a href="" style="text-decoration: none;"><p class="card-text"><small class="text-muted"><i class="bi bi-person-fill"></i> {{ blog.post_author }}</small></p></a>
+              <br>
+              <a href="" class="btn btn-success">Leer más</a>
+            </div>
+          </div>
+
+        </div>
+
+        {% endfor %}
+      
+          </div>
+        </div>
+<!--       
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav> -->
+      
+      </div>
+      
+      
+      
+      <!-- CARDS END -->
+
+
+            
+     
+
+      </div>
+      </div>
+    
+
+
+</div>
+<!-- HOME END -->
+ 
+
+{% endblock %}
