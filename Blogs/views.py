@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from posts.models import *
+from Blogs.models import *
 from django.http import HttpResponse
 
 # Create your views here.

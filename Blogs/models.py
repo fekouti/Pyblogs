@@ -20,7 +20,7 @@ class Post(models.Model):
     post_img = models.ImageField(upload_to='blog_image/', blank=True)
     post_date = models.DateField(auto_now_add=True)
     post_author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    post_body = models.CharField(max_length=140000)
+    post_body = models.TextField()
     post_tags = models.ManyToManyField(Tag)
 
     def __str__(self):
