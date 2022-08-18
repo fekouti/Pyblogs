@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from Blogs.models import *
 from django.http import HttpResponse
 
@@ -15,9 +16,11 @@ def blogs(request):
 # ---- Create New Blog ---- #
 
 
-def new_blog(request):
-    return render(request, 'new_post.html', context={})
+# def new_blog(request):
+#     return render(request, 'new_post.html', context={})
 
+
+@login_required
 def new_post(request):
     
     if request.method == 'POST':
@@ -30,6 +33,7 @@ def new_post(request):
         post_body= request.POST['post_body']
 
         post_img= request.POST['post_img']
+
 
        
         new_post = Post(title=title, subtitle=subtitle, post_body=post_body, post_img=post_img)

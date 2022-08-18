@@ -11,39 +11,41 @@
 
     <!-- HOME -->
 <div id="home">
+   
 
     <div class="container login-form-container ">
       <div class="row">
         <div class="col-md-3">
         </div>
-         <form class="col-md-6 login-form" action="" method="POST">
+         <form class="col-md-6 login-form" action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
 
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre de usuario</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username">
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" required>
           </div>
 
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" required>
             <div id="emailHelp" class="form-text">No compartiremos tu correo con nadie.</div>
           </div>
 
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+            <input type="password" class="form-control" id="show_hide_password" name="password" required minlength="8" maxlength="12">
+            <div id="emailHelp" class="form-text">Entre 8 y 12 caracteres.</div>
           </div>
 
 
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre</label>
-            <input type="text" class="form-control" name="name">
+            <input type="text" class="form-control" name="name" required>
           </div>
 
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Apellido</label>
-            <input type="text" class="form-control" name="lastname">
+            <input type="text" class="form-control" name="lastname" required>
           </div>
 
           
@@ -54,12 +56,19 @@
 
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Sobre ti</label>
-           <textarea name="user_bio" id="" cols="30" rows="10" style="width:100%;"></textarea>
+           <textarea name="user_bio" id="" cols="30" rows="10" style="width:100%;" required></textarea>
           </div>
 
 
           <button type="submit" class="btn btn-success">Registrarse</button>
+
+
+          <a href="../login/" style="text-align: center; margin-top: 15px; text-decoration: none; color: black;"><p>Ya tenés una cuenta ? Iniciá Sesión :)</p></a>
+
          </form>
+
+         
+
         <div class="col-md-3">
         </div>
       </div>

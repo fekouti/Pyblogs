@@ -10,6 +10,6 @@ class Users_admin(admin.ModelAdmin):
     list_display = ['username', 'email', 'password']
 
 
-@admin.register(User_profile)
+@admin.register(Profile)
 class Users_Profile_admin(admin.ModelAdmin):
     list_display = ['user','name', 'lastname', 'user_bio','user_img']

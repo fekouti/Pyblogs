@@ -24,10 +24,9 @@ from Blogs.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name="index"),
+
     path('about/', about, name="about"),
-    # path('register/', register, name="register"),
-    # path('register/', registerUser, name="register"),
-    # path('register/', registerProfile, name="register"),
+
     path('blogs/', include('Blogs.urls')),
     path('user/', include('Accounts.urls')),
     

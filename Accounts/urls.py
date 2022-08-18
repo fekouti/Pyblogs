@@ -5,5 +5,8 @@ from django.urls import path
 
 urlpatterns = [
 
-    # path('profile/', profile, name="profile"),
+    path('register/', create_user, name="new_user"),
+    path('login/', login_request, name="login"),
+    path('logout/', logout_request, name="logout"),
+    path('<str:username>/', profile, name="profile"),
 ]

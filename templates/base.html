@@ -6,6 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static '../static/css/style.css' %}">
+    
+    <!-- Bootstrap, FontAwesome & Text Editor -->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
@@ -42,12 +46,37 @@
               <li class="nav-item">
                 <a class="nav-link" href="/blogs/all">Blogs</a>
               </li>
+
             </ul>
             <form class="d-flex" role="search" method="GET" action="/blogs/search">
-              <input class="form-control me-2" type="search" placeholder="Buscar posts" name="Search">
+              <input class="form-control me-2" type="search" placeholder="Buscar posts" name="Search" required>
               <button class="btn" type="submit"><i class="bi bi-search busqueda"></i></button>
             </form>
-            <a href="#" class="btn btn-outline-light login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">LOGIN</a>
+
+
+
+            {% if user.is_authenticated %}
+
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+                <i class="bi bi-person-fill" style="color: white; font-size: 1.2em;"></i> {{user.profile.name}}
+              </button>
+              <ul class="dropdown-menu">
+                <li><a href="../../user/logout/" class="dropdown-item" style="color: rgb(69, 11, 11);">Logout</a></li>
+                <li><a class="dropdown-item" href="/user/{{user.username}}" style="color: black;">Mi Perfil</a></li>
+                <li><a href="../../blogs/new/"><button type="button" class="dropdown-item">Nuevo Post<i class="bi bi-plus" style="color:rgb(0, 0, 0);"></i></button></a></li>
+              </ul>
+            </div>
+            
+            
+
+            {% else %}
+
+
+            <a href="#" class="btn btn-outline-light login-btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+
+            {% endif %}
+          
 
 
             <!-- botones logout y perfil -->
@@ -70,24 +99,29 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form class="col-md-12">
+        <form class="col-md-12" action="../../user/login/" method="POST">
+          {%csrf_token%}
+          
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <label class="form-label">Usuario</label>
+            <input type="text" class="form-control" name="username" required>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="show_hide_password" name="password" required>
+          </div>
+          <div class="modal-footer">
+            <a href="../../user/register"><button type="button" class="btn btn-link" data-bs-dismiss="modal">Registrarse</button></a>
+            <button type="submit" class="btn btn-success">Login</button>
           </div>
          </form>
       </div>
-      <div class="modal-footer">
-        <a href="/register"><button type="button" class="btn btn-link" data-bs-dismiss="modal">Registrarse</button></a>
-        <button type="button" class="btn btn-success">Login</button>
-      </div>
+      
     </div>
   </div>
 </div>
+
+
 
 
 <!-- CONTENT -->
@@ -127,5 +161,9 @@
 
      <!-- bootstrap js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+    <!-- A plugin for password show/hide  -->
+   <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
+
 </body>
 </html>
