@@ -1,6 +1,7 @@
 from pyexpat import model
 from turtle import title
 from django.db import models
+from django.conf import settings
 from Accounts.models import *
 
 # Create your models here.
@@ -19,8 +20,8 @@ class Post(models.Model):
     subtitle = models.CharField(max_length=240)
     post_img = models.ImageField(upload_to='blog_image/', blank=True)
     post_date = models.DateField(auto_now_add=True)
-    post_author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    post_body = models.TextField()
+    post_author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    post_body = models.TextField(blank=False)
     post_tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):

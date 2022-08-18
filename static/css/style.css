@@ -199,6 +199,11 @@ footer{
     object-fit: cover;
 }
 
+#profile-name {
+    font-family: var(--main-font-bold);
+
+}
+
 
 .profile-panel .row{
     margin-top: 25px;

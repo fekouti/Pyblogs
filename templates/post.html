@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block variableTitle %}
+        {{ post.title }}
+      {% endblock %}
+
 {% load static %}
 
 {% block variableContent %}
@@ -16,21 +20,63 @@
       
       <div class="row">
         <div class="col-md-9 post-card">
+
           
-          <h2>Titulo del post</h2>
-          <h4>Descripción</h4>
+          <h2>{{ post.title }}</h2>
+          <h4 style="font-size: 1.3em;">{{ post.subtitle }}</h4>
 
-          <h5><a href="/appUsers/profile">Autor</a></h5>
+          <h5><a href="../../user/{{ post.post_author }}" style="font-size: 0.7em;"> <i class="bi bi-person-fill"></i> {{ post.post_author.profile.name }} {{ post.post_author.profile.lastname }}</a></h5>
 
-          <h6 class="text-muted">22/06/1998</h6>
+          <h6 class="text-muted" style="font-size: 0.8em;"><i class="bi bi-clock"></i>  {{post.post_date}}</h6>
 
-          <img src="https://picsum.photos/900/400" alt="" style="margin-bottom: 10px;">
+          <img src="{{ post.post_img.url }}" alt="" style="margin-bottom: 10px;">
 
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aliquam voluptatibus tempora atque distinctio. Animi natus, earum deserunt eaque, vitae quisquam distinctio perspiciatis facere sint labore iusto ex explicabo totam laborum.
+            {{ post.post_body }}
           </p>
 
+
+
+          {% if user.is_authenticated %}
+
+            {% if user.is_staff %}
+
+
+          <form action="../edit/{{post.pk}}/" method="POST" style="margin-bottom: 20px ;">
+
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success" value="Editar">Editar Post</button>
+          </form>
+        
+
+            {% endif %}
+          {% endif %}
+
+
+
+          {% if user.is_authenticated %}
+
+            {% if user.is_staff %}
+
+
+          <form action="../delete/{{post.pk}}/" method="POST">
+
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger" value="Borrar">Eliminar Post</button>
+          </form>
+        
+
+            {% endif %}
+          {% endif %}
+
+
         </div>
+          
+        <!-- END OF BLOG -->
+        
+
+    
+
         <div class="col-md-3">
 
           <div class="container-fluid side-card">
@@ -44,12 +90,17 @@
               </form>
             </div> 
             <p class="text-disabled">--------------------------------------------------</p>
+            
+            {% if user.is_authenticated %}
+            
+
+            {% else %}
             <div class="side-card-register">
               <p>Aún no estas registrado? Qué estás esperando?</p>
               <a href="../appUsers/register"><button class="btn btn-outline-success">Registrarme!</button></a>
             </div>
 
-
+            {% endif %}
 
 
 

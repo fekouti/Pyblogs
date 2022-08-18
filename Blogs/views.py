@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.generic import *
 from django.contrib.auth.decorators import login_required
 from Blogs.models import *
 from django.http import HttpResponse
@@ -16,10 +17,6 @@ def blogs(request):
 # ---- Create New Blog ---- #
 
 
-# def new_blog(request):
-#     return render(request, 'new_post.html', context={})
-
-
 @login_required
 def new_post(request):
     
@@ -32,11 +29,11 @@ def new_post(request):
 
         post_body= request.POST['post_body']
 
-        post_img= request.POST['post_img']
+        post_img= request.POST.get('post_img')
 
-
+        post_author = request.user
        
-        new_post = Post(title=title, subtitle=subtitle, post_body=post_body, post_img=post_img)
+        new_post = Post(title=title, subtitle=subtitle, post_body=post_body, post_img=post_img, post_author=post_author)
 
         new_post.save()
 
@@ -72,11 +69,25 @@ def search(request):
 
 # ---- Edit Blogs ---- #
 
-
+class BlogEdit(UpdateView):
+    model = Post
+    success_url = '../../../blogs/all/'
+    fields = ['title', 'subtitle', 'post_img','post_body']
 
 
 # ---- Delete Blogs ---- #
 
+class BlogDelete(DeleteView):
+    model = Post
+    template_name = 'post.html'
+    success_url = '../../../blogs/all/'
 
 
 # ---- Read Blogs ---- #
+
+
+class BlogDetail(DetailView):
+    model = Post
+    template_name = 'post.html'
+
+
