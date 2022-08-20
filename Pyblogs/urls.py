@@ -23,7 +23,7 @@ from Blogs.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name="index"),
+    path('', blogHome, name="index"),
 
     path('about/', about, name="about"),
 

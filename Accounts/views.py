@@ -1,5 +1,6 @@
 from telnetlib import LOGOUT
 from django.shortcuts import render, redirect
+from django.views.generic import *
 from django.http import HttpResponse
 from django.contrib import auth, messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -33,6 +34,7 @@ def create_user(request):
 
         user_bio= request.POST['user_bio']
 
+        user_img= request.POST.get('user_img')
         user_img= request.FILES.get('user_img')
 
        
@@ -97,6 +99,27 @@ def logout_request(request):
 
 # ---- Profiles ---- #
 
-def profile(request, username=None):
-    return render(request, 'profile.html')
+# def profile(request, username=None):
+#     return render(request, 'profile.html')
 
+# ---- Read Profiles ---- #
+
+
+class profile(DetailView):
+    model = User
+    template_name = 'profile.html'
+
+# ---- Edit Profiles ---- #
+
+class UserEdit(UpdateView):
+    model = User
+    success_url = '../../../user/<user.pk>/'
+    fields = ['user_img','user_bio']
+
+
+# ---- Delete Profiles ---- #
+
+class UserDelete(DeleteView):
+    model = User
+    template_name = 'profile.html'
+    success_url = '/'

@@ -6,5 +6,6 @@ from Blogs.models import *
 
 @admin.register(Post)
 class Post_admin(admin.ModelAdmin):
-    list_display = ['title', 'subtitle', 'post_img','post_date','post_author','post_body']
+    list_display = ['title', 'subtitle', 'post_img','post_date','post_author','timestamp','is_featured']
+    
 

@@ -17,5 +17,5 @@ urlpatterns = [
 
     path('delete/<int:pk>/', BlogDelete.as_view(), name='blogdelete'),
 
-    path('edit/<int:pk>/', BlogEdit.as_view(), name='blogedit'),
+    path('edit/<int:pk>/', BlogEdit, name='blogedit'),
 ]

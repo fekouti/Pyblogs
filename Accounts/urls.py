@@ -8,5 +8,5 @@ urlpatterns = [
     path('register/', create_user, name="new_user"),
     path('login/', login_request, name="login"),
     path('logout/', logout_request, name="logout"),
-    path('<str:username>/', profile, name="profile"),
+    path('<int:pk>/', profile.as_view(), name="profile"),
 ]

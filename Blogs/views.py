@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.views.generic import *
 from django.contrib.auth.decorators import login_required
@@ -30,6 +31,7 @@ def new_post(request):
         post_body= request.POST['post_body']
 
         post_img= request.POST.get('post_img')
+        post_img= request.FILES.get('post_img')
 
         post_author = request.user
        
@@ -37,7 +39,7 @@ def new_post(request):
 
         new_post.save()
 
-        return redirect('/')
+        return redirect('../../../blogs/all/')
 
 
     return render(request, 'new_post.html', context={})
@@ -69,11 +71,27 @@ def search(request):
 
 # ---- Edit Blogs ---- #
 
-class BlogEdit(UpdateView):
-    model = Post
-    success_url = '../../../blogs/all/'
-    fields = ['title', 'subtitle', 'post_img','post_body']
+def BlogEdit(request, pk):
+    
+    if request.method == 'POST':
+        
+        new_title= request.POST['title']
 
+        new_subtitle= request.POST['subtitle']
+
+        new_post_body= request.POST['post_body']
+
+        new_post_img= request.POST.get('post_img')
+        new_post_img= request.FILES.get('post_img')
+
+        edit_post = Post.pk(title=new_title, subtitle=new_subtitle, post_body=new_post_body, post_img=new_post_img)
+       
+
+        edit_post.save()
+
+        return redirect('../../../blogs/all/')
+
+    return render(request, 'edit_post.html', context={})
 
 # ---- Delete Blogs ---- #
 
