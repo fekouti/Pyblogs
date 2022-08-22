@@ -1,12 +1,9 @@
 from telnetlib import LOGOUT
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.views.generic import *
-from django.http import HttpResponse
-from django.contrib import auth, messages
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
+
 from Accounts.models import *
 from Blogs.models import *
 from .forms import *
@@ -101,8 +98,6 @@ def logout_request(request):
 
 # ---- Profiles ---- #
 
-# ---- Posts on Profiles ---- #
-
 
 # ---- Read Profiles ---- #
 
@@ -110,13 +105,20 @@ def logout_request(request):
 class profile(DetailView):
     model = User
     template_name = 'profile.html'
+    context_object_name = 'user'
 
-    def profile_posts(request):
-        blogs = Post.objects.all()
-        print(blogs)
-        context = {'blogs':blogs}
-        return request,context
+    # def blogs(user):
+    #     blogs = Post.objects.all().order_by('-timestamp')
+    #     context = {
+    #         'blogs':blogs
+    #     }
+    #     return render(context) 
 
+    def get_context_data(self, **kwargs):
+        context = super(profile, self).get_context_data(**kwargs)
+        context['blogs'] = Post.objects.all().order_by('-timestamp')
+        return context
+    
 
 # ---- Edit Profiles ---- #
 

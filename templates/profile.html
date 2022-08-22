@@ -112,30 +112,30 @@
             <div class="row row-cols-2 row-cols-md-2 g-4">
               
 
+              {% for blog in blogs %}
 
-
-                <!-- CARDS -->
+                {% if blog.post_author == user %}
      
 
-       <div class="col">
-        <div class="card mb-3" style="max-width: 540px;">
-            <div class="row g-0">
-              <div class="col-md-4" >
-                <img src="https://picsum.photos/300/400" class="img-fluid rounded-start" alt="..." style="height: 100%; object-fit: contain;">
-              </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">{{ blog.title }}</h5>
-                  <p class="card-text">{{ post.postContent }}</p>
-                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  <a href="#" class="btn btn-success">Leer Más</a>
+                <div class="card mb-3" style="max-width: 700px; width: 100%;">
+                  <div class="row g-0">
+                    <div class="col-md-4">
+                      <img src="{{blog.post_img.url}}" class="img-fluid rounded-start" style="object-fit: contain; height: 100%; width: 100%;">
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ blog.title }}</h5>
+                        <p class="card-text">{{ blog.subtitle }}</p>
+                        <a href="../../user/{{user.pk}}" style="text-decoration: none;"><p class="card-text"><small class="text-muted"><i class="bi bi-person-fill"></i> {{ blog.post_author.profile.name }} {{ blog.post_author.profile.lastname }}</small></p></a>
+                      <br>
+                      <a href="/blogs/{{blog.pk}}" class="btn btn-success">Leer más</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        
+                  {% endif %}
+                {% endfor %}
       
           </div>
         </div>

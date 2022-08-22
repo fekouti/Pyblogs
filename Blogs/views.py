@@ -10,7 +10,7 @@ from django.http import HttpResponse
 # ---- List all Blogs ---- #
 
 def blogs(request):
-     blogs=Post.objects.all()
+     blogs=Post.objects.all().order_by('-timestamp')
      context = {"blogs":blogs}
      return render(request,"blogs.html",context = context)
 
@@ -82,7 +82,7 @@ class blog_edit(UpdateView):
 class BlogDelete(DeleteView):
     model = Post
     template_name = 'post.html'
-    success_url = '../../blogs/all/'
+    success_url = '../../../blogs/all/'
 
 
 # ---- Read Blogs ---- #

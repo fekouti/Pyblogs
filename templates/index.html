@@ -16,6 +16,9 @@
             
             <div class="container" style="width: 100%; justify-content:center;">
               
+              <!-- Muestra Post Destacado el cual se cambia desde el sitio de admin -->
+
+
               {% for blog in featured %}
 
               <div class="card mb-3" style="width: 100%; max-height: 100%;">
@@ -53,7 +56,9 @@
           <h5 class="home-title">Ultimos Posts</h5>
 
             <div class="row row-cols-3 row-cols-md-3 g-4" style="margin-left:15px;">
+
               
+              <!-- Ultimos 5 posts -->
 
               {% if newposts %}
 
