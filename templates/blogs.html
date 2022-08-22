@@ -33,7 +33,7 @@
        <div class="col">
 
 
-          <div class="card blog-item" style="width: 22rem; margin-left: 50px; margin-bottom: 30px;">
+          <div class="card blog-item" style="width: 22rem; margin-left: 50px; margin-bottom: 10px;">
             <div style="width: 100%; height: 100%; ">
               <img src=" {{blog.post_img.url}} " class="card-img-top" style="object-fit: contain;">
             </div> 
@@ -41,7 +41,7 @@
               <h5 class="card-title">{{ blog.title }}</h5>
               <p class="card-text">{{ blog.subtitle }}</p>
               <p class="card-text" style="font-size: .8em;"><small class="text-muted"><i class="bi bi-clock"></i> {{ blog.post_date }}</small></p>
-              <a href="../../user/{{user.pk}}" style="text-decoration: none;"><p class="card-text"><small class="text-muted"><i class="bi bi-person-fill"></i> {{ blog.post_author.profile.name }} {{ blog.post_author.profile.lastname }}</small></p></a>
+              <a href="../../user/{{blog.post_author.profile.user.pk}}" style="text-decoration: none;"><p class="card-text"><small class="text-muted"><i class="bi bi-person-fill"></i> {{ blog.post_author.profile.name }} {{ blog.post_author.profile.lastname }}</small></p></a>
               <br>
               <a href="/blogs/{{blog.pk}}" class="btn btn-success">Leer más</a>
             </div>

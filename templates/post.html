@@ -25,11 +25,11 @@
           <h2>{{ post.title }}</h2>
           <h4 style="font-size: 1.3em;">{{ post.subtitle }}</h4>
 
-          <h5><a href="../../user/{{user.pk}}" style="font-size: 0.7em;"> <i class="bi bi-person-fill"></i> {{ post.post_author.profile.name }} {{ post.post_author.profile.lastname }}</a></h5>
+          <h5><a href="../../user/{{post.post_author.profile.user.pk}}" style="font-size: 0.7em;"> <i class="bi bi-person-fill"></i> {{ post.post_author.profile.name }} {{ post.post_author.profile.lastname }}</a></h5>
 
           <h6 class="text-muted" style="font-size: 0.8em;"><i class="bi bi-clock"></i>  {{post.post_date}}</h6>
 
-          <img src="{{ post.post_img.url }}" alt="" style="margin-bottom: 10px;">
+          <img src="{{ post.post_img.url }}" alt="" style="margin-bottom: 10px; max-width: 90%;">
 
           <p>
             {{ post.post_body }}
@@ -45,7 +45,7 @@
 
             {% if user.is_staff or post.post_author == user %}
 
-
+          <div class="d-flex justify-content-center">
             <form action="../edit/{{post.pk}}/" method="POST" style="margin-bottom: 20px ;">
 
               {% csrf_token %}
@@ -53,12 +53,13 @@
             </form>
 
 
-          <form action="../delete/{{post.pk}}/" method="POST">
+          <form action="../delete/{{post.pk}}/" method="POST" style="margin-left: 15px;">
 
             {% csrf_token %}
             <button type="submit" class="btn btn-danger" value="Borrar">Eliminar Post</button>
           </form>
         
+        </div>
 
             {% endif %}
           {% endif %}
@@ -80,7 +81,7 @@
               <p>Recibe semanalmente los mejores artículos de Pyblog en tu mail.</p>
               <form action="">
                 <input type="email" name="" style="width: 100%; " placeholder="Ingresa tu email">
-                <button type="submit" class="btn btn-outline-dark disabled">Suscribirse!</button>
+                <button type="submit" class="btn btn-outline-dark disabled">Proximamente!</button>
               </form>
             </div> 
             <p class="text-disabled">--------------------------------------------------</p>

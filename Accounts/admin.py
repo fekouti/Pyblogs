@@ -7,7 +7,7 @@ from Accounts.models import *
 
 @admin.register(User)
 class Users_admin(admin.ModelAdmin):
-    list_display = ['username', 'email', 'password']
+    list_display = ['username', 'email',]
 
 
 @admin.register(Profile)

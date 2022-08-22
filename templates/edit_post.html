@@ -18,11 +18,11 @@
 
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Titulo</label>
-            <input type="text" class="form-control" name="title">
+            <input type="text" class="form-control" name="title" value="{{post.title}}">
           </div>
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Subtitulo</label>
-            <input type="text" class="form-control" name="subtitle">
+            <input type="text" class="form-control" name="subtitle" value="{{post.subtitle}}">
           </div>
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Imagen</label>
@@ -30,7 +30,7 @@
           </div>
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Contenido</label>
-            <textarea name="post_body" style="width:100%; height:200px;" id="post_body"></textarea> 
+            <textarea name="post_body" style="width:100%; height:200px;" id="post_body">{{post.post_body}}</textarea> 
           </div>
       </div>
 

@@ -1,5 +1,6 @@
 from telnetlib import LOGOUT
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from django.views.generic import *
 from django.http import HttpResponse
 from django.contrib import auth, messages
@@ -7,6 +8,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from Accounts.models import *
+from Blogs.models import *
 from .forms import *
 
 
@@ -99,8 +101,8 @@ def logout_request(request):
 
 # ---- Profiles ---- #
 
-# def profile(request, username=None):
-#     return render(request, 'profile.html')
+# ---- Posts on Profiles ---- #
+
 
 # ---- Read Profiles ---- #
 
@@ -109,12 +111,20 @@ class profile(DetailView):
     model = User
     template_name = 'profile.html'
 
+    def profile_posts(request):
+        blogs = Post.objects.all()
+        print(blogs)
+        context = {'blogs':blogs}
+        return request,context
+
+
 # ---- Edit Profiles ---- #
 
-class UserEdit(UpdateView):
-    model = User
-    success_url = '../../../user/<user.pk>/'
+class profile_edit(UpdateView):
+    model = Profile
+    success_url = '/'
     fields = ['user_img','user_bio']
+    template_name = 'edit_profile.html'
 
 
 # ---- Delete Profiles ---- #
@@ -123,3 +133,4 @@ class UserDelete(DeleteView):
     model = User
     template_name = 'profile.html'
     success_url = '/'
+

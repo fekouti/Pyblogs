@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block variableTitle %}
+  Editar perfil
+{% endblock %}
+
+{% block variableContent %}
+
+
+    <!-- HOME -->
+<div id="home">
+   
+
+    <div class="container login-form-container ">
+      <div class="row">
+        <div class="col-md-3">
+        </div>
+         <form class="col-md-6 login-form" action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          
+          <div class="mb-3">
+            <label class="form-label">Foto de perfil</label>
+            <input type="file" class="form-control" name="user_img">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Sobre ti</label>
+            <textarea name="user_bio" id="" cols="30" rows="10" style="width:100%;" required>{{request.user.profile.user_bio}}
+            </textarea>
+          </div>
+
+
+          <button type="submit" class="btn btn-success">Actualizar</button>
+
+
+         </form>
+
+         
+
+        <div class="col-md-3">
+        </div>
+      </div>
+    </div>
+
+
+</div>
+    <!-- HOME END -->
+
+    {% endblock %}

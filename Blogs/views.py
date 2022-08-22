@@ -71,34 +71,18 @@ def search(request):
 
 # ---- Edit Blogs ---- #
 
-def BlogEdit(request, pk):
-    
-    if request.method == 'POST':
-        
-        new_title= request.POST['title']
-
-        new_subtitle= request.POST['subtitle']
-
-        new_post_body= request.POST['post_body']
-
-        new_post_img= request.POST.get('post_img')
-        new_post_img= request.FILES.get('post_img')
-
-        edit_post = Post.pk(title=new_title, subtitle=new_subtitle, post_body=new_post_body, post_img=new_post_img)
-       
-
-        edit_post.save()
-
-        return redirect('../../../blogs/all/')
-
-    return render(request, 'edit_post.html', context={})
+class blog_edit(UpdateView):
+    model = Post
+    success_url = '../../blogs/all/'
+    fields = ['title', 'subtitle', 'post_img', 'post_body']
+    template_name = 'edit_post.html'
 
 # ---- Delete Blogs ---- #
 
 class BlogDelete(DeleteView):
     model = Post
     template_name = 'post.html'
-    success_url = '../../../blogs/all/'
+    success_url = '../../blogs/all/'
 
 
 # ---- Read Blogs ---- #

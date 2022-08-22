@@ -1,4 +1,6 @@
 import email
+from typing_extensions import Required
+from django.conf import settings
 from django.db import models
 
 # Create your models here.
@@ -6,9 +8,12 @@ from django.db import models
 
 
 class User(models.Model):
-    username = models.CharField(max_length=24, unique=True)
-    email = models.EmailField(max_length=40, unique=True)
-    password = models.CharField(max_length=12)
+
+
+    username = models.ForeignKey(
+        settings.AUTH_USER_MODEL,on_delete=models.CASCADE, )
+    email = models.EmailField(max_length=40, unique=True, blank=True)
+    password = models.CharField(max_length=12, blank=True)
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
