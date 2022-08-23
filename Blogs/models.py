@@ -9,7 +9,7 @@ from Accounts.models import *
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=40, null=True)
+    name = models.CharField(max_length=40, null=True, unique=True)
 
     def __str__(self):
         return self.name
@@ -23,7 +23,7 @@ class Post(models.Model):
     post_date = models.DateField(auto_now_add=True)
     post_author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
     post_body = models.TextField(blank=False)
-    post_tags = models.ManyToManyField(Tag, blank=True)
+    post_tags = models.ManyToManyField(to=Tag, blank=True, related_name='posts')
     timestamp = models.DateTimeField(auto_now_add=True)
     is_featured = models.BooleanField(default=False)
 

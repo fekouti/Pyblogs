@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+
+
+{% block variableTitle %}
+        Etiqueta: "{{ tags }}"
+      {% endblock %}
+
+{% load static %}
+
+{% block variableContent %}
+
+    <!-- HOME -->
+<div id="home">
+
+    <div class="container-fluid last-posts">
+      <h3 class="recent-posts home-title">Todos los posts con la etiqueta "{{ tags }}"</h3>
+
+      
+      
+      <div class="row">
+        <div class="col-md-8">
+    
+          <div class="container d-flex">
+            <div class="row row-cols-1 row-cols-md-2 g-4" style="width: 100%;">
+              
+              
+
+                <!-- CARDS -->
+
+                {% if blogs %}
+
+                {% for blog in blogs %}
+
+       <div class="col">
+
+          <div class="card blog-item" style="width: 22rem; margin-bottom: 30px;">
+            <div style="width: 100%; height: 100%; ">
+              <img src=" {{blog.post_img.url}} " class="card-img-top" alt="..." style="object-fit: contain;">
+            </div> 
+            <div class="card-body">
+              <h5 class="card-title">{{ blog.title }}</h5>
+              <p class="card-text">{{ blog.subtitle }}</p>
+              {% if blog.post_tags is not None %}
+                        {% for tag in blog.post_tags.all %}
+                         <a href="blogs/tags/{{tag}}" class="tags"><i class="bi bi-hash"></i>{{ tag }}</a>
+                        {% endfor %}
+                      {% endif %}
+              <a href="" style="text-decoration: none;"><p class="card-text"><small class="text-muted"><i class="bi bi-person-fill"></i> {{ blog.post_author.profile.name }} {{ blog.post_author.profile.lastname }} </small></p></a>
+              <br>
+              <a href="" class="btn btn-success">Leer más</a>
+            </div>
+          </div>
+
+        </div>
+
+            <!-- CARDS END -->     
+
+      {% endfor %}
+
+      {% else %}
+        <h5 class="text-muted">No se encontraron resultados.</h5>
+      {% endif %}
+
+
+      </div>
+    </div>    
+  </div>        
+  
+
+
+            
+      <!-- ASIDE -->
+
+
+        <div class="col-md-4">
+          <div class="container">
+
+
+                <!-- CODER AD -->
+
+                <div class="card bg-dark text-white coder-ad">
+                  <a href="https://www.coderhouse.com/" target="_blank">
+                    <img src="{% static 'img/aside.jpg' %}" class="card-img" alt="coder banner">
+                  </a>
+                </div>
+                <!-- CODER AD -->
+
+          </div>
+        </div>
+      
+      <!-- ASIDE END -->
+
+
+
+    </div>
+  </div>
+</div>
+<!-- HOME END -->
+
+{% endblock %}

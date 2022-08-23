@@ -10,6 +10,7 @@ urlpatterns = [
 
     path('new/', new_post, name="new_blog"),
 
+
     path('search', search, name="search"),
     path('search', search_results, name="search_results"),
 
@@ -18,4 +19,6 @@ urlpatterns = [
     path('delete/<int:pk>/', BlogDelete.as_view(), name='blogdelete'),
 
     path('edit/<int:pk>/', blog_edit.as_view(), name='blogedit'),
+
+    path('tags/<str:name>/', tags_detail, name="tag_detail"),
 ]

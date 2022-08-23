@@ -30,7 +30,14 @@
                     <div class="card-body">
                       <h5 class="card-title">{{ blog.title }}</h5>
                       <p class="card-text">{{ blog.subtitle }}</p>
-                      <a href="../../user/{{ user.pk }}" style="text-decoration: none;"><p class="card-text"><small class="text-muted"><i class="bi bi-person-fill"></i> {{ blog.post_author.profile.name }} {{ blog.post_author.profile.lastname }}</small></p></a>
+                      {% if blog.post_tags is not None %}
+                        {% for tag in blog.post_tags.all %}
+                         <a href="blogs/tags/{{tag}}" class="tags"><i class="bi bi-hash"></i>{{ tag }}</a>
+                        {% endfor %}
+                      {% endif %}
+                      <br>
+                      <br>
+                      <a href="../../user/{{ user.pk }}" style="text-decoration: none; margin-top: 20px;"><p class="card-text"><small class="text-muted"><i class="bi bi-person-fill"></i> {{ blog.post_author.profile.name }} {{ blog.post_author.profile.lastname }}</small></p></a>
                       <br>
                       <p class="card-text" style="font-size: .8em;"><small class="text-muted"><i class="bi bi-clock"></i> {{ blog.post_date }}</small></p>
                     <br>
@@ -75,6 +82,11 @@
               <div class="card-body">
                 <h5 class="card-title">{{ blog.title }}</h5>
                 <p class="card-text">{{ blog.subtitle }}</p>
+                {% if blog.post_tags is not None %}
+                {% for tag in blog.post_tags.all %}
+              <a href="#" class="tags"><i class="bi bi-hash"></i>{{ tag }}</a>
+                {% endfor %}
+              {% endif %}
                 <a href="../../user/{{user.pk}}" style="text-decoration: none;"><p class="card-text"><small class="text-muted"><i class="bi bi-person-fill"></i> {{ blog.post_author.profile.name }} {{ blog.post_author.profile.lastname }}</small></p></a>
               <br>
               <a href="/blogs/{{blog.pk}}" class="btn btn-success">Leer más</a>

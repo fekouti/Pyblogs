@@ -1,4 +1,5 @@
 from multiprocessing import context
+from tkinter import FLAT
 from django.shortcuts import render, redirect
 from django.views.generic import *
 from django.contrib.auth.decorators import login_required
@@ -10,8 +11,11 @@ from django.http import HttpResponse
 # ---- List all Blogs ---- #
 
 def blogs(request):
-     blogs=Post.objects.all().order_by('-timestamp')
-     context = {"blogs":blogs}
+     blogs = Post.objects.all().order_by('-timestamp')
+     tags = Tag.objects.all()
+    
+     context = {"blogs":blogs, "tags":tags}
+
      return render(request,"blogs.html",context = context)
 
 
@@ -20,9 +24,8 @@ def blogs(request):
 
 @login_required
 def new_post(request):
-    
+
     if request.method == 'POST':
-        
 
         title= request.POST['title']
 
@@ -37,12 +40,24 @@ def new_post(request):
        
         new_post = Post(title=title, subtitle=subtitle, post_body=post_body, post_img=post_img, post_author=post_author)
 
+        
         new_post.save()
+
+        tags = request.FILES.get('post_tags')
+
+        if tags is not None:
+
+            new_post.post_tags.set(tags)
+
+        
 
         return redirect('../../../blogs/all/')
 
+    tags = Tag.objects.all()
+    context = {"tags":tags}
 
-    return render(request, 'new_post.html', context={})
+
+    return render(request, 'new_post.html', context=context)
 
 
 # ---- Search Among Blogs ---- #
@@ -93,3 +108,13 @@ class BlogDetail(DetailView):
     template_name = 'post.html'
 
 
+# ---- Tag Posts ---- #
+
+def tags_detail(request, name):
+    tags = Tag.objects.get(name__iexact=name)
+
+    blogs = Post.objects.filter(post_tags=tags)
+    
+    context = {"blogs":blogs, "tags":tags}
+   
+    return render(request, 'tag_results.html', context=context)

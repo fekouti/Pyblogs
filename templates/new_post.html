@@ -25,6 +25,12 @@
             <input type="text" class="form-control" name="subtitle">
           </div>
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
+            <label class="form-label">Etiquetas</label><br>
+            {% for tag in tags %}
+            <input type="checkbox" name="post_tags" value="{{tag}}"> {{tag}}<br>
+            {% endfor %}
+          </div>
+          <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Imagen</label>
             <input type="file" class="form-control" name="post_img">
           </div>

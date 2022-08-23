@@ -26,6 +26,12 @@
           <h2>{{ post.title }}</h2>
           <h4 style="font-size: 1.3em;">{{ post.subtitle }}</h4>
 
+          {% if post.post_tags is not None %}
+                {% for tag in post.post_tags.all %}
+              <a href="../tags/{{tag}}" class="tags"><i class="bi bi-hash"></i>{{ tag }}</a>
+                {% endfor %}
+              {% endif %}
+
           <h5><a href="../../user/{{post.post_author.profile.user.pk}}" style="font-size: 0.7em;"> <i class="bi bi-person-fill"></i> {{ post.post_author.profile.name }} {{ post.post_author.profile.lastname }}</a></h5>
 
           <h6 class="text-muted" style="font-size: 0.8em;"><i class="bi bi-clock"></i>  {{post.post_date}}</h6>
