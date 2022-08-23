@@ -43,11 +43,19 @@ def new_post(request):
         
         new_post.save()
 
-        tags = request.FILES.get('post_tags')
+        tags = request.POST.getlist('post_tags')
+
+        new_post_tags = []
+        
+        for name in tags:
+            try:
+                tag = Tag.objects.get(name=name)
+            finally:
+                new_post_tags.append(tag)
 
         if tags is not None:
 
-            new_post.post_tags.set(tags)
+            new_post.post_tags.add(*new_post_tags)
 
         
 
