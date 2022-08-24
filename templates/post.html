@@ -36,7 +36,29 @@
 
           <h6 class="text-muted" style="font-size: 0.8em;"><i class="bi bi-clock"></i>  {{post.post_date}}</h6>
 
-          <img src="{{ post.post_img.url }}" alt="" style="margin-bottom: 10px; max-width: 90%;">
+
+          <div class="d-flex">
+            <!-- LIKES -->
+              {% if user.is_authenticated %}
+              <form action="{% url 'blogpost_like' object.id %}" method="POST" style="margin-right: 20px;">
+                {% csrf_token %}
+
+                {% if post_is_liked %}
+                <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-danger"> <i class="bi bi-heartbreak-fill" style="font-size: 1em; color:rgb(255, 255, 255);"></i>  Ya no me gusta</button>
+                {% else %}
+                <button type="submit" name="blogpost_id" value="{{object.id}}" class="btn btn-success"> <i class="bi bi-heart-fill" style="font-size: 1em; color:rgb(255, 255, 255);"></i>  Me gusta</button>
+                {% endif %}
+              </form>
+              {% endif %}
+              <div style="padding-top: 6px;">
+                <strong> <i class="bi bi-heart-fill" style="font-size: 1em; color:green;"></i>  {{ number_of_likes }} Like{{ number_of_likes|pluralize }}</strong>
+              </div>
+          </div>
+
+          <br>
+
+          <img src="{{ post.post_img.url }}" alt="" style="margin-bottom: 10px; max-width: 90%; max-height: 700px;">
+
 
           <p>
             {{ post.post_body }}

@@ -26,6 +26,13 @@ class Post(models.Model):
     post_tags = models.ManyToManyField(to=Tag, blank=True, related_name='posts')
     timestamp = models.DateTimeField(auto_now_add=True)
     is_featured = models.BooleanField(default=False)
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='post_likes')
+
+    def number_of_posts(self):
+        return self.count()
+    
+    def number_of_likes(self):
+        return self.likes.count()
 
     def save(self, *args, **kwargs):
         if self.is_featured == True:

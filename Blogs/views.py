@@ -1,6 +1,9 @@
 from multiprocessing import context
 from tkinter import FLAT
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 from django.views.generic import *
 from django.contrib.auth.decorators import login_required
 from Blogs.models import *
@@ -115,6 +118,17 @@ class BlogDetail(DetailView):
     model = Post
     template_name = 'post.html'
 
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+
+        likes_connected = get_object_or_404(Post, id=self.kwargs['pk'])
+        liked = False
+        if likes_connected.likes.filter(id=self.request.user.id).exists():
+            liked = True
+        data['number_of_likes'] = likes_connected.number_of_likes()
+        data['post_is_liked'] = liked
+        return data
+
 
 # ---- Tag Posts ---- #
 
@@ -126,3 +140,14 @@ def tags_detail(request, name):
     context = {"blogs":blogs, "tags":tags}
    
     return render(request, 'tag_results.html', context=context)
+
+# ---- Posts Likes ---- #
+
+def BlogPostLike(request, pk):
+    post = get_object_or_404(Post, id=request.POST.get('blogpost_id'))
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return redirect('../../blogs/'+ str(pk))

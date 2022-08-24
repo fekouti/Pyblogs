@@ -21,4 +21,6 @@ urlpatterns = [
     path('edit/<int:pk>/', blog_edit.as_view(), name='blogedit'),
 
     path('tags/<str:name>/', tags_detail, name="tag_detail"),
+
+    path('blogpost-like/<int:pk>', views.BlogPostLike, name="blogpost_like"),
 ]
