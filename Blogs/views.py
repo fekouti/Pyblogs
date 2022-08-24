@@ -96,7 +96,7 @@ def search(request):
 
 class blog_edit(UpdateView):
     model = Post
-    success_url = '../../blogs/all/'
+    success_url = '../../../blogs/all/'
     fields = ['title', 'subtitle', 'post_img', 'post_body']
     template_name = 'edit_post.html'
 

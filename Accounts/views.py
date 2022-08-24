@@ -1,5 +1,6 @@
 from telnetlib import LOGOUT
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic import *
@@ -17,6 +18,7 @@ from .forms import *
 
 # ---- Register ---- #
 
+@user_passes_test(lambda user: not user.username, login_url='/', redirect_field_name=None)
 def create_user(request):
     
     if request.method == 'POST':
@@ -45,32 +47,27 @@ def create_user(request):
                     
                     User.objects.get(username = username)
 
-                    print("problema1")
 
                     messages.success(request,"Ya existe ese nombre de usuario. Por favor intenta otro")
 
                     return redirect('../register')
             
                 except User.DoesNotExist:
-                    print("problema2")
                     pass
 
             if email is not None:
 
                 try:
                     User.objects.get(email = email)
-                    print("problema3")
 
                     messages.success(request,"Este correo ya está en uso. Por favor intenta otro.")
 
                     return redirect('../register')
                 
                 except:
-                    print("problema4")
                     pass
             
             
-            print("seguimos")
         
             new_user = User.objects.create_user(username=username, email=email, password=password)
                 
@@ -93,7 +90,7 @@ def create_user(request):
 
 # ---- Login & Logout ---- #
 
-
+@user_passes_test(lambda user: not user.username, login_url='/', redirect_field_name=None)
 def login_request(request):
 
     
@@ -112,7 +109,8 @@ def login_request(request):
             return redirect('/')         
 
         else:
-            return redirect('login/')
+            messages.success(request,"Usuario y/o contraseña incorrectos.")
+            return redirect('../login/')
 
 
     return render(request, 'login.html', context={})
