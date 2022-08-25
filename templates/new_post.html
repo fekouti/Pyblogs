@@ -7,7 +7,6 @@
 
 {% block variableContent %}
 
-
     <!-- HOME -->
 <div id="home">
 
@@ -18,11 +17,11 @@
 
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Titulo</label>
-            <input type="text" class="form-control" name="title">
+            <input type="text" class="form-control" name="title" required>
           </div>
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Subtitulo</label>
-            <input type="text" class="form-control" name="subtitle">
+            <input type="text" class="form-control" name="subtitle" required>
           </div>
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Etiquetas</label><br>
@@ -32,11 +31,11 @@
           </div>
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Imagen</label>
-            <input type="file" class="form-control" name="post_img">
+            <input type="file" class="form-control" name="post_img" required>
           </div>
           <div class="mb-3" style="padding-left: 10px; padding-right: 10px;">
             <label class="form-label">Contenido</label>
-            <textarea name="post_body" style="width:100%; height:200px;" id="post_body"></textarea> 
+            <textarea name="post_body" style="width:100%; height:200px;" id="tinymce"></textarea> 
           </div>
       </div>
 

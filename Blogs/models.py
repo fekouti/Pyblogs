@@ -26,7 +26,7 @@ class Post(models.Model):
     post_tags = models.ManyToManyField(to=Tag, blank=True, related_name='posts')
     timestamp = models.DateTimeField(auto_now_add=True)
     is_featured = models.BooleanField(default=False)
-    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='post_likes')
+    likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='post_likes', blank=True)
 
     def number_of_posts(self):
         return self.count()
@@ -39,6 +39,11 @@ class Post(models.Model):
             Post.objects.filter(is_featured=True).update(is_featured=False)
         super().save(*args, **kwargs)
 
+
+    @property
+    def html_stripped(self):
+       from django.utils.safestring import mark_safe
+       return mark_safe(self.post_body)
 
     def __str__(self):
         return self.title
