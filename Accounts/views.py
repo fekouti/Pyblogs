@@ -136,14 +136,7 @@ class profile(DetailView):
     model = User
     template_name = 'profile.html'
     context_object_name = 'user'
-
-    # def blogs(user):
-    #     blogs = Post.objects.all().order_by('-timestamp')
-    #     context = {
-    #         'blogs':blogs
-    #     }
-    #     return render(context) 
-
+    
     def get_context_data(self, **kwargs):
         context = super(profile, self).get_context_data(**kwargs)
         context['blogs'] = Post.objects.all().order_by('-timestamp')

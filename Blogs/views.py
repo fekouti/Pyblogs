@@ -1,13 +1,13 @@
 from multiprocessing import context
 from tkinter import FLAT
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.http import HttpResponse
 
 from django.views.generic import *
 from django.contrib.auth.decorators import login_required
+
 from Blogs.models import *
-from django.http import HttpResponse
+
 
 # Create your views here.
 

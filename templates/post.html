@@ -38,6 +38,7 @@
 
 
           <div class="d-flex">
+
             <!-- LIKES -->
               {% if user.is_authenticated %}
               <form action="{% url 'blogpost_like' object.id %}" method="POST" style="margin-right: 20px;">
@@ -99,7 +100,7 @@
         <!-- END OF BLOG -->
         
 
-    
+        <!-- NEWSLETTER (decoration) -->
 
         <div class="col-md-3">
 
