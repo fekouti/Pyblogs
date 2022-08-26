@@ -1,10 +1,14 @@
 from telnetlib import LOGOUT
-from django.shortcuts import render, redirect
+from unittest.mock import DEFAULT
+from django.http import Http404
+
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic import *
 from django.contrib.auth import login, logout, authenticate
+
 
 from Accounts.models import *
 from Blogs.models import *
@@ -66,8 +70,7 @@ def create_user(request):
                 
                 except:
                     pass
-            
-            
+                
         
             new_user = User.objects.create_user(username=username, email=email, password=password)
                 
@@ -150,6 +153,17 @@ class profile_edit(UpdateView):
     success_url = '/'
     fields = ['user_img','user_bio']
     template_name = 'edit_profile.html'
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.profile.id == self.kwargs.get('pk'):
+            return redirect('/')
+        return super().get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not request.user.profile.id == self.kwargs.get('pk'):
+            return redirect('/')
+        return super().post(request, *args, **kwargs)
+
 
 
 # ---- Delete Profiles ---- #

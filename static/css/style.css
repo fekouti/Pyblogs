@@ -238,3 +238,18 @@ footer{
     font-family: var(--main-font-bold);
     font-size: 1.4em;
 }
+
+
+/* ERROR PAGE */
+
+#error-msg{
+    font-family: var(--main-font-bold);
+    color: #647027;
+    font-size: 4em;
+    margin-top: 20%;
+}
+
+#error-txt{
+    font-family: var(--main-font);
+    font-size: 1.5em;
+}

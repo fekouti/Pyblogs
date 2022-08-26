@@ -36,7 +36,7 @@
     </script>
     <script type="text/javascript">
       tinymce.init({
-        selector: 'textarea',
+        selector: 'tinymce',
         plugins : "paste",
         paste_text_sticky : true,
         oninit: "setPlainText",
@@ -89,8 +89,8 @@
               </button>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="/user/{{request.user.pk}}" style="color: black;">Mi Perfil</a></li>
-                <li><a href="../../blogs/new/"><button type="button" class="dropdown-item">Nuevo Post<i class="bi bi-plus" style="color:rgb(0, 0, 0);"></i></button></a></li>
-                <li><a href="../../user/logout/" class="dropdown-item" style="color: rgb(69, 11, 11);">Salir</a></li>
+                <li><a href="{% url 'new_blog' %}"><button type="button" class="dropdown-item">Nuevo Post<i class="bi bi-plus" style="color:rgb(0, 0, 0);"></i></button></a></li>
+                <li><a href="{% url 'logout' %}" class="dropdown-item" style="color: rgb(69, 11, 11);">Salir</a></li>
               </ul>
             </div>
             
@@ -125,7 +125,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form class="col-md-12" action="../../user/login/" method="POST">
+        <form class="col-md-12" action="{% url 'login' %}" method="POST">
           {%csrf_token%}
           
           <div class="mb-3">

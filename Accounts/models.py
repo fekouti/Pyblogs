@@ -26,7 +26,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=40)
     lastname = models.CharField(max_length=40)
     user_bio = models.TextField()
-    user_img = models.ImageField(default='default.jpg', upload_to='profile_image/', blank=True)
+    user_img = models.ImageField(default='default.jpg', upload_to='profile_image/')
 
     def __str__(self):
         return self.user.username + ' - profile'

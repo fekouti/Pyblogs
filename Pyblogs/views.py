@@ -22,4 +22,8 @@ def about(request):
     return render(request, 'about.html', context={})
 
 
+def error(request):
+    return render(request, '404.html', context={})
+
+
 

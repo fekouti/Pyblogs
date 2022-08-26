@@ -9,6 +9,19 @@
 {% block variableContent %}
 
 
+<!-- CHECK IF USER EDITING IS THE PROFILE'S OWNER -->
+
+      {% if user.is_authenticated %}
+
+          {% if request.user == user.profile.user %}
+
+            {% if user.is_staff or user.pk == user.profile.user_id %}
+
+       
+
+          
+
+
     <!-- HOME -->
 <div id="home">
    
@@ -48,5 +61,12 @@
 
 </div>
     <!-- HOME END -->
+
+
+     {% endif %}
+
+     {% endif %}
+
+      {% endif %}
 
     {% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block variableTitle %}
+        Error 404
+      {% endblock %}
+{% load static %}
+
+{% block variableContent %}
+
+
+    <!-- HOME -->
+<div id="home" style="height:84vh;">
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="row">
+            <div class="col-12">
+              <h2 id="error-msg">HTTP ERROR 404</h2>
+            </div>
+          </div>
+
+            <div class="row">
+              <div class="col-12">
+                <p id ="error-txt">
+                  Parece que la página que buscas no existe <br>
+                  o no deberías estar en ella... &#128064;
+                </p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <a href="{% url 'index' %}"><button class="btn btn-success"><i class="bi bi-house-fill"></i>  Inicio</button></a>
+              </div>
+            </div>
+
+          
+        </div>
+
+        <div class="col-md-6" style="height:100%">
+          <img src="../media/pyblog.svg" alt="" style="height:80vh; padding-left: 40%;padding-top: 5%;">
+        </div>
+
+      </div>
+
+    </div>
+
+</div>
+    <!-- HOME END -->
+
+    {% endblock %}

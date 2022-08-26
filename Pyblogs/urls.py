@@ -27,7 +27,9 @@ urlpatterns = [
 
     path('about/', about, name="about"),
 
+    path('404/', error, name="404"),
+
     path('blogs/', include('Blogs.urls')),
-    path('user/', include('Accounts.urls')),
+    path('user/', include('Accounts.urls')), 
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
