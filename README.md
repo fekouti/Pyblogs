@@ -3,6 +3,9 @@
 
 Este proyecto web fue desarrollado por **Fernando Luna** para la comisión 31090 del curso de Python en CoderHouse.
 
+Video en **YouTube**: https://youtu.be/_G0U6Zx4OWY
+
+Link a **PythonAnywhere**: https://fernandoluna.pythonanywhere.com/
 
 ## Requerimientos
 ***
